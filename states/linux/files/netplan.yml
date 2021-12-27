@@ -1,0 +1,28 @@
+network:
+  ethernets:
+    {%- for iface in pillar.linux.interfaces %}
+    {{ iface.name }}:
+      {%- if iface.proto == 'dhcp' %}
+      dhcp4: true
+      {%- endif %}
+      {%- if iface.proto == 'static' %}
+      addresses:
+        - {{ iface.address }}/{% if iface.netmask == '255.255.255.0' %}24{% endif %}
+      {%- if 'routes' in iface %}
+      routes: {{ iface.routes }}
+      {%- else %}
+      gateway4: {{ iface.gateway }}
+      {%- endif %}
+      nameservers:
+          {%- if 'name_search' in iface %}
+          search: [{{ iface.name_search }}]
+          {%- endif %}
+          addresses: {{ iface.name_servers }}
+      {%- endif %}
+      {%- if 'wireless_essid' in iface %}
+      access-points:
+        "{{ iface.wireless_essid }}":
+          password: "{{ iface.wireless_key }}"
+      {%- endif %}
+    {%- endfor %}
+  version: 2
