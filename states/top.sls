@@ -1,11 +1,11 @@
 # states
 
 apealive:
-  '*': []
+  #'*': []
 
-  #'pc-*|ntbk-*|dontpanic':
+  #'pc-* or ntbk-* or dontpanic':
 
-  'cmp*|compute*':
+  'cmp* or compute*':
     - users
     - packages
     - salt
@@ -13,7 +13,7 @@ apealive:
     - microk8s
     - node_exporter
 
-  '*-nuc*': []
+  #'*-nuc*': []
 
   '*-rpi*':
     - linux
