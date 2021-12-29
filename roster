@@ -1,0 +1,21 @@
+
+dontpanic.apealive.net:
+  host: localhost
+  priv: ~/.ssh/id_ed25519
+  user: epcim
+  sudo: True
+  minion_opts:
+    saltenv: apealive
+    pillarenv: apealvie
+  #  top_file_merging_strategy: merge # same, merge_all
+
+cmp1-nuc11.apealive.net:
+  host: 172.31.1.11
+  priv: ~/.ssh/id_ed25519
+  user: epcim
+  sudo: True
+  minion_opts:
+    saltenv: apealive
+    pillarenv: apealvie
+  #  top_file_merging_strategy: merge # same, merge_all
+
